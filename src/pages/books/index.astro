@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BookCard from "../../components/BookCard.astro";
+import { getCollection } from "astro:content";
+
+const books = (await getCollection("books"))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<BaseLayout title="Books - Gianni Salinetti" description="Books I've authored on containers and DevOps.">
+  <main class="app-container pt-36">
+    <h1 class="text-6xl pb-8 font-bold">Books</h1>
+    <p class="md:w-2/3 text-lg leading-[2rem]">
+      Books I've written on containers, DevOps, and cloud-native technologies.
+    </p>
+  </main>
+  <section class="app-container py-12">
+    {books.length === 0 ? (
+      <p class="opacity-60 italic">No books yet. Check back soon!</p>
+    ) : (
+      <div class="grid my-6 md:grid-cols-2 gap-6">
+        {books.map((book) => (
+          <BookCard
+            title={book.data.title}
+            subtitle={book.data.subtitle}
+            description={book.data.description}
+            publisher={book.data.publisher}
+            publishDate={book.data.publishDate}
+            coAuthors={book.data.coAuthors}
+            slug={book.id}
+            tags={book.data.tags}
+            buyLink={book.data.buyLink}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>

@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formattedDate = post.data.date.toLocaleDateString("en-US", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+});
+---
+
+<BaseLayout title={`${post.data.title} - Gianni Salinetti`} description={post.data.description}>
+  <main>
+    <article>
+      <div class="app-container py-24">
+        <div class="max-w-[75ch] mx-auto">
+          <a href="/blog" class="text-primary dark:text-primary-dark hover:underline underline-offset-4">&larr; Back to Blog</a>
+          <h1 class="text-4xl sm:text-5xl leading-snug pt-12 font-bold">{post.data.title}</h1>
+          <div class="flex items-center gap-4 flex-wrap py-8 opacity-70">
+            <span>{formattedDate}</span>
+            {post.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2">
+                {post.data.tags.map((tag) => (
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-foreground/5 dark:bg-foreground-dark/10">{tag}</span>
+                ))}
+              </div>
+            )}
+          </div>
+          <div class="prose prose-neutral prose-lg dark:prose-invert prose-img:rounded-xl prose-a:text-primary dark:prose-a:text-primary-dark">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+</BaseLayout>

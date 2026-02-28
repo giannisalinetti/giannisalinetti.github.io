@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: "Inter Variable", sans-serif;
+  --font-mono: "JetBrains Mono Variable", monospace;
+
+  --color-foreground: #0c0c0c;
+  --color-foreground-dark: #fafafa;
+  --color-background: #ffffff;
+  --color-background-dark: #1a1a1a;
+  --color-primary: #e94560;
+  --color-primary-dark: #ff6b81;
+}
+
+html {
+  scroll-padding-top: 6.5rem;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.app-container {
+  @apply container mx-auto px-6 sm:px-12 2xl:px-16;
+}
+
+#mobile-menu.mobile-nav-open {
+  @apply translate-x-0 shadow-xl/30;
+}
+
+.section-title {
+  @apply text-4xl font-semibold pb-3;
+}
+
+.prose iframe {
+  @apply my-16 mx-auto w-11/12 aspect-video rounded-xl;
+}

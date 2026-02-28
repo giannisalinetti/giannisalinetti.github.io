@@ -1,0 +1,30 @@
+---
+interface Props {
+  spotifyUrl: string;
+  title?: string;
+  compact?: boolean;
+}
+
+const { spotifyUrl, title = "Spotify Player", compact = false } = Astro.props;
+
+function getEmbedUrl(url: string): string {
+  const cleaned = url.replace("https://open.spotify.com/", "");
+  return `https://open.spotify.com/embed/${cleaned}?utm_source=generator&theme=0`;
+}
+
+const embedUrl = getEmbedUrl(spotifyUrl);
+const height = compact ? "152" : "352";
+---
+
+<div class="rounded-xl overflow-hidden shadow-sm">
+  <iframe
+    title={title}
+    src={embedUrl}
+    width="100%"
+    height={height}
+    frameborder="0"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy"
+    class="rounded-xl"
+  ></iframe>
+</div>

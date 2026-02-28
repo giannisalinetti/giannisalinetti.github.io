@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SpotifyPlayer from "../../components/SpotifyPlayer.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const recordings = await getCollection("recordings");
+  return recordings.map((recording) => ({
+    params: { slug: recording.id },
+    props: { recording },
+  }));
+}
+
+const { recording } = Astro.props;
+const { Content } = await render(recording);
+
+const typeLabel = recording.data.type.charAt(0).toUpperCase() + recording.data.type.slice(1);
+---
+
+<BaseLayout title={`${recording.data.title} - Gianni Salinetti`} description={recording.data.description}>
+  <main>
+    <article>
+      <div class="app-container py-24">
+        <div class="max-w-[75ch] mx-auto">
+          <a href="/recordings" class="text-primary dark:text-primary-dark hover:underline underline-offset-4">&larr; Back to Recordings</a>
+
+          <h1 class="text-4xl sm:text-5xl leading-snug pt-12 font-bold">{recording.data.title}</h1>
+          <div class="flex items-center gap-3 py-6 opacity-70">
+            <span class="text-sm font-semibold uppercase tracking-wider text-primary dark:text-primary-dark opacity-100">{typeLabel}</span>
+            <span>&middot;</span>
+            <span>
+              {recording.data.date.toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" })}
+            </span>
+          </div>
+          {recording.data.artist && (
+            <p class="text-xl opacity-70 mb-6">{recording.data.artist}</p>
+          )}
+          {recording.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mb-8">
+              {recording.data.tags.map((tag) => (
+                <span class="text-xs px-2.5 py-1 rounded-full bg-foreground/5 dark:bg-foreground-dark/10 opacity-70">{tag}</span>
+              ))}
+            </div>
+          )}
+
+          <div class="mb-10">
+            <SpotifyPlayer spotifyUrl={recording.data.spotifyUrl} title={recording.data.title} />
+          </div>
+
+          <div class="prose prose-neutral prose-lg dark:prose-invert prose-img:rounded-xl prose-a:text-primary dark:prose-a:text-primary-dark">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+</BaseLayout>

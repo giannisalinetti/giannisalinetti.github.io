@@ -1,0 +1,49 @@
+---
+import { SocialLinks, WebsiteLinks } from "../consts";
+import { Image } from "astro:assets";
+import logoPng from "../assets/logo.png";
+
+const today = new Date();
+---
+
+<footer>
+  <div class="app-container grid md:grid-cols-3 gap-12 py-16 border-t-2 border-foreground/10 dark:border-foreground-dark/10">
+    <div>
+      <a href="/" aria-label="Home">
+        <Image src={logoPng} alt="Logo" class="h-9 w-auto dark:invert" width={36} height={36} />
+      </a>
+      <p class="text-sm mt-2 opacity-60">Personal website</p>
+    </div>
+    <div>
+      <h3 class="font-semibold text-lg mb-4">Links</h3>
+      <div class="flex flex-wrap gap-4">
+        {WebsiteLinks.filter((link) => link.name !== "Home").map((link) => (
+          <a
+            class="opacity-70 hover:opacity-100 hover:underline underline-offset-4 transition-opacity"
+            href={link.url}
+          >
+            {link.name}
+          </a>
+        ))}
+      </div>
+    </div>
+    <div>
+      <h3 class="font-semibold text-lg mb-4">Socials</h3>
+      <div class="flex flex-wrap gap-4">
+        {SocialLinks.map((link) => (
+          <a
+            class="opacity-70 hover:opacity-100 hover:underline underline-offset-4 transition-opacity"
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {link.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+  <div class="app-container pb-6">
+    <p class="text-sm opacity-50">&copy; {today.getFullYear()} Gianni Salinetti</p>
+  </div>
+</footer>
