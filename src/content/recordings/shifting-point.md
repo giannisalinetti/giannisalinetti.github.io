@@ -1,7 +1,7 @@
 ---
 title: "Shifting Point"
 description: "An album exploring the intersection of jazz, electronic, and ambient textures."
-date: 2024-01-01
+date: 2024-02-01
 spotifyUrl: "https://open.spotify.com/album/17ppIMPHXax3CIKyII9DIN?si=xBWNLxGOTMiXpPEYOJdmCw"
 type: "album"
 artist: "Gianni Salinetti"
