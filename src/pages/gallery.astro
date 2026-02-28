@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const images = [
+  { src: "/images/gallery/spiral-staircase.jpg", alt: "Spiral staircase seen from above" },
+  { src: "/images/gallery/stage-guitar.jpg", alt: "Guitar resting on a chair on a concert stage" },
+  { src: "/images/gallery/pier.jpg", alt: "Pier extending into the water with mountains in the background" },
+  { src: "/images/gallery/prickly-pear.jpg", alt: "Prickly pear cactus against the sky" },
+  { src: "/images/gallery/vintage-headlight.jpg", alt: "Headlight detail of a rusty vintage car" },
+  { src: "/images/gallery/two-guitars.jpg", alt: "Two acoustic guitars side by side" },
+  { src: "/images/gallery/industrial-crane.jpg", alt: "Industrial crane silhouette against the sky" },
+  { src: "/images/gallery/waterfront.webp", alt: "Waterfront view" },
+  { src: "/images/gallery/cornfield.jpg", alt: "Cornfield under an overcast sky" },
+  { src: "/images/gallery/window-curtain.jpg", alt: "Window with a tied curtain" },
+  { src: "/images/gallery/light-through-window.webp", alt: "Light coming through a window" },
+  { src: "/images/gallery/curtain-light.jpg", alt: "Warm light filtering through a curtain" },
+];
+---
+
+<BaseLayout title="Gallery - Gianni Salinetti" description="A collection of personal photographs.">
+  <main class="app-container pt-36">
+    <h1 class="text-6xl pb-8 font-bold">Gallery</h1>
+    <p class="md:w-2/3 text-lg leading-[2rem]">
+      A collection of moments captured through the lens.
+    </p>
+  </main>
+  <section class="app-container py-12">
+    <div class="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
+      {images.map((image) => (
+        <div class="break-inside-avoid overflow-hidden rounded-xl group">
+          <img
+            src={image.src}
+            alt={image.alt}
+            class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

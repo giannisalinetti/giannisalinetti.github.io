@@ -22,4 +22,5 @@ export const WebsiteLinks = [
   { name: "Blog", url: "/blog" },
   { name: "Books", url: "/books" },
   { name: "Recordings", url: "/recordings" },
+  { name: "Gallery", url: "/gallery" },
 ];
