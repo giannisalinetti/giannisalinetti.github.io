@@ -7,6 +7,7 @@ publishDate: 2026-01-01
 coAuthors: ["Alessandro Arrichiello"]
 isbn: "9781835886632"
 buyLink: "https://www.packtpub.com/en-ar/product/podman-for-devops-9781835886632"
+cover: "/images/books/podman_for_devops_second_edition.webp"
 tags: ["podman", "containers", "devops", "kubernetes", "ai"]
 ---
 

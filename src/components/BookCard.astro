@@ -9,9 +9,10 @@ interface Props {
   slug: string;
   tags: string[];
   buyLink?: string;
+  cover?: string;
 }
 
-const { title, subtitle, description, publisher, publishDate, coAuthors, slug, tags } = Astro.props;
+const { title, subtitle, description, publisher, publishDate, coAuthors, slug, tags, cover } = Astro.props;
 
 const formattedDate = publishDate.toLocaleDateString("en-US", {
   year: "numeric",
@@ -19,28 +20,37 @@ const formattedDate = publishDate.toLocaleDateString("en-US", {
 });
 ---
 
-<a href={`/books/${slug}`} class="flex flex-col gap-3 pb-8 h-full group transition-colors">
-  <h4 class="text-2xl font-semibold group-hover:text-primary dark:group-hover:text-primary-dark group-hover:underline underline-offset-4 transition-colors">
-    {title}
-  </h4>
-  {subtitle && <p class="opacity-70">{subtitle}</p>}
-  <p class="line-clamp-3 opacity-80">{description}</p>
-  <div class="flex flex-wrap items-center gap-3 mt-auto text-sm opacity-60">
-    <span>{publisher}</span>
-    <span>&middot;</span>
-    <span>{formattedDate}</span>
-    {coAuthors.length > 0 && (
-      <>
-        <span>&middot;</span>
-        <span>with {coAuthors.join(", ")}</span>
-      </>
+<a href={`/books/${slug}`} class="flex gap-6 pb-8 h-full group transition-colors">
+  {cover && (
+    <img
+      src={cover}
+      alt={`${title} cover`}
+      class="w-32 h-auto object-contain rounded-lg shrink-0 self-start"
+    />
+  )}
+  <div class="flex flex-col gap-3">
+    <h4 class="text-2xl font-semibold group-hover:text-primary dark:group-hover:text-primary-dark group-hover:underline underline-offset-4 transition-colors">
+      {title}
+    </h4>
+    {subtitle && <p class="opacity-70">{subtitle}</p>}
+    <p class="line-clamp-3 opacity-80">{description}</p>
+    <div class="flex flex-wrap items-center gap-3 mt-auto text-sm opacity-60">
+      <span>{publisher}</span>
+      <span>&middot;</span>
+      <span>{formattedDate}</span>
+      {coAuthors.length > 0 && (
+        <>
+          <span>&middot;</span>
+          <span>with {coAuthors.join(", ")}</span>
+        </>
+      )}
+    </div>
+    {tags.length > 0 && (
+      <div class="flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <span class="text-xs px-2 py-0.5 rounded-full bg-foreground/5 dark:bg-foreground-dark/10 opacity-70">{tag}</span>
+        ))}
+      </div>
     )}
   </div>
-  {tags.length > 0 && (
-    <div class="flex flex-wrap gap-2">
-      {tags.map((tag) => (
-        <span class="text-xs px-2 py-0.5 rounded-full bg-foreground/5 dark:bg-foreground-dark/10 opacity-70">{tag}</span>
-      ))}
-    </div>
-  )}
 </a>

@@ -40,6 +40,13 @@ const formattedDate = book.data.publishDate.toLocaleDateString("en-US", {
               </>
             )}
           </div>
+          {book.data.cover && (
+            <img
+              src={book.data.cover}
+              alt={`${book.data.title} cover`}
+              class="w-48 h-auto rounded-lg my-6"
+            />
+          )}
           {book.data.isbn && (
             <p class="text-sm font-mono opacity-50 mb-4">ISBN: {book.data.isbn}</p>
           )}

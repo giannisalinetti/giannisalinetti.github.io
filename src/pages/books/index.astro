@@ -30,6 +30,7 @@ const books = (await getCollection("books"))
             slug={book.id}
             tags={book.data.tags}
             buyLink={book.data.buyLink}
+            cover={book.data.cover}
           />
         ))}
       </div>

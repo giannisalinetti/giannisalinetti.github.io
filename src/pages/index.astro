@@ -105,18 +105,27 @@ const books = (await getCollection("books"))
   <section class="app-container py-24 grid lg:grid-cols-2 gap-28 lg:gap-10">
     <div class="space-y-6">
       <h2 class="section-title">My Books</h2>
-      <div class="space-y-4">
+      <div class="space-y-6">
         {books.map((book) => (
-          <a href={`/books/${book.id}`} class="block group">
-            <h4 class="text-xl font-semibold group-hover:text-primary dark:group-hover:text-primary-dark group-hover:underline underline-offset-4 transition-colors">
-              {book.data.title}
-            </h4>
-            {book.data.subtitle && (
-              <p class="text-sm opacity-60 mt-1">{book.data.subtitle}</p>
+          <a href={`/books/${book.id}`} class="flex gap-4 group">
+            {book.data.cover && (
+              <img
+                src={book.data.cover}
+                alt={`${book.data.title} cover`}
+                class="w-20 h-auto object-contain rounded-md shrink-0 self-start"
+              />
             )}
-            <p class="text-sm opacity-50 mt-1">
-              {book.data.publisher} &middot; {book.data.publishDate.toLocaleDateString("en-US", { year: "numeric" })}
-            </p>
+            <div>
+              <h4 class="text-xl font-semibold group-hover:text-primary dark:group-hover:text-primary-dark group-hover:underline underline-offset-4 transition-colors">
+                {book.data.title}
+              </h4>
+              {book.data.subtitle && (
+                <p class="text-sm opacity-60 mt-1">{book.data.subtitle}</p>
+              )}
+              <p class="text-sm opacity-50 mt-1">
+                {book.data.publisher} &middot; {book.data.publishDate.toLocaleDateString("en-US", { year: "numeric" })}
+              </p>
+            </div>
           </a>
         ))}
       </div>
