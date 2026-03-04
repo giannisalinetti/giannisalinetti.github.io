@@ -5,7 +5,10 @@ date: 2026-02-03
 tags: ["mindfulness", "leadership", "music", "technology"]
 ---
 
-![The Log](/images/blog/log-sea.jpg)
+<figure>
+  <img src="/images/blog/log-sea.jpg" alt="The Log" />
+  <figcaption style="text-align: right; font-size: 0.75rem;">Photo by Gianni Salinetti</figcaption>
+</figure>
 
 This is my first blog post on my new website. I wanted to write about some technical content, but when I started planning, I asked myself: what is lacking today in many areas?
 Very often we see projects fail, but we can't understand the reasons that led to the failure. We had the technology, information, and skills, but somehow we got lost in cognitive overload and found ourselves in a messed-up state of mind.
