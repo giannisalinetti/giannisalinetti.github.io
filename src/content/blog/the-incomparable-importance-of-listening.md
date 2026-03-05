@@ -3,6 +3,7 @@ title: "The Incomparable Importance of Listening"
 description: "Exploring why listening is a master skill in many areas and is the key to thoughtful technology leadership."
 date: 2026-02-03
 tags: ["mindfulness", "leadership", "music", "technology"]
+image: "/images/blog/log-sea.jpg"
 ---
 
 <figure>
