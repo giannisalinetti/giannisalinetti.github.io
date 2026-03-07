@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://giannisalinetti.github.io/sitemap-index.xml
